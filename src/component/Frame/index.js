@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button, Rate, Icon} from 'antd';
+
 import './style.css'
 
 export default (props) => (
@@ -21,6 +23,9 @@ export default (props) => (
 
     <div class='main'>
       <header>
+        <Button type='primary'>this is antd button</Button>
+        <Rate />
+        <Icon type="link" />
         this is header
       </header>
       <div class='content'>
