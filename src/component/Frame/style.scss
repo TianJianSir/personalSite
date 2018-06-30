@@ -1,0 +1,22 @@
+.frame-container{
+  .slider{
+    float: left;
+    width: 200px;
+    padding: 10px;
+  }
+
+  .main{
+    margin-left: 200px;
+    border-left: 1px solid #e8e8e8;
+    header{
+      height: 50px;
+      padding-left: 10px;
+      line-height: 50px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .content{
+      padding: 10px; 
+    }
+  }
+}
