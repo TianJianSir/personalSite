@@ -1,7 +1,10 @@
 .frame-container{
+  background: url('../../assert/image_3.jpg');
+  min-height: 500px;
   .slider{
     float: left;
     width: 200px;
+    height: 500px;
     padding: 10px;
   }
 
@@ -16,7 +19,7 @@
     }
 
     .content{
-      padding: 10px; 
+      padding: 10px;
     }
   }
 }
