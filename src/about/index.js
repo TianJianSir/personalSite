@@ -5,7 +5,7 @@ import './style.css'
 
 export default () => (
   <Frame>
-    <div class='about-container'>
+    <div className='about-container'>
       <h2>About</h2>
       <Link to='/topics'>goto topics</Link>
     </div>

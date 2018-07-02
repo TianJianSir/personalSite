@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Rate, Icon} from 'antd';
+import { Rate, Icon} from 'antd';
 
 import './style.css'
 
 export default (props) => (
-  <div class='frame-container'>
-    <div class='slider'>
+  <div className='frame-container'>
+    <div className='slider'>
       <p>这是左边菜单栏</p>
       <ul>
         <li>
@@ -21,14 +21,13 @@ export default (props) => (
       </ul>
     </div>
 
-    <div class='main'>
+    <div className='main'>
       <header>
-        <Button type='primary'>this is antd button</Button>
         <Rate />
         <Icon type="link" />
         this is header
       </header>
-      <div class='content'>
+      <div className='content'>
         {props.children}
       </div>
     </div>
