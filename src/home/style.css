@@ -1,0 +1,6 @@
+.home-container {
+  color: red; }
+  .home-container ul {
+    list-style: none; }
+    .home-container ul li {
+      display: inline-block; }
