@@ -1,9 +1,27 @@
-import { httpHelper } from '../utils/https'
+import axios from 'axios'
 
-let github = {
-  getApilist(url,params,type){
-    return httpHelper.REQUEST(url,params,type).then(res=>res.data)
-  }
+const API = {
+    REQUEST: function(url,type,params={}){
+        return this[type](url,params).then((res)=>{
+            if(res.data.ret === 0){
+                return res.data
+            }else{
+                // todo 统一容错
+            }
+        })
+    },
+    GET: function(url,params){
+        return axios.get(url,{params})
+    },
+    POST: function(url,params){
+        return axios.post(url,params)
+    },
+    DELETE: function(url,{params}){
+        return axios.delete(url,params)
+    },
+    PUT: function(url,params){
+        return axios.put(url,params)
+    }
 }
 
-export default github
+export default API
