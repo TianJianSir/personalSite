@@ -9,7 +9,6 @@ export default class Page extends Component{
   render(){
     return (
       <div className='Page_container'>
-        <p>this is page component</p>
           {this.props.children}
       </div>
     )
