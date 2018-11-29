@@ -7,7 +7,7 @@ app.use('/blog/static', express.static(path.join(__dirname, 'build/static')))
 
 app.use('*',function(req,res,next){
     console.log('------->>>>>>')
-    console.log(req)
+    console.log(req.params)
     next()
 })
 
