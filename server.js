@@ -11,6 +11,12 @@ app.use('*',function(req,res,next){
     next()
 })
 
+app.get('/', (req, res) => {
+    console.log('espress blog request')
+    res.setHeader('Content-Type', 'text/html');
+    res.sendfile('./build/index.html')
+})
+
 // 因为在nginx上用blog做了反向代理
 app.get('/blog', (req, res) => {
     console.log('espress blog request')
