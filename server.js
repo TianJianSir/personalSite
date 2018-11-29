@@ -10,4 +10,10 @@ app.get('/', (req, res) => {
     res.sendfile('./build/index.html')
 })
 
+app.get('/blog', (req, res) => {
+    console.log('espress blog request')
+    res.setHeader('Content-Type', 'text/html');
+    res.sendfile('./build/index.html')
+})
+
 app.listen(port,()=>console.log(`my_app listening on port ${port}!`))
