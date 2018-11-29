@@ -5,6 +5,12 @@ const port = 7000;
 
 app.use('/blog/static', express.static('build/static'))
 
+
+app.use(function(err, req, res, next) {
+    console.log('---error')
+    console.error(err.stack);
+  });
+
 app.use('*',function(req,res,next){
     console.log('------->>>>>>')
     console.log(req.params)
