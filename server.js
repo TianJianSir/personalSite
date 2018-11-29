@@ -1,8 +1,9 @@
 const express  = require('express');
+const path = require('path')
 const app = express();
 const port = 7000;
 
-app.use('/static', express.static('build/static'))
+app.use('/blog/static', express.static(path.join(__dirname, 'build/static')))
 
 app.get('/', (req, res) => {
     console.log('espress get request')
