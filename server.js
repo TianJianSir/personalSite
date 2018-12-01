@@ -3,7 +3,7 @@ const path = require('path')
 const app = express();
 const port = 7000;
 
-app.use('/static', express.static('build/static'))
+app.use('/blog/static', express.static('build/static'))
 
 app.use('*',function(req,res,next){
     console.log('------->>>>>>')
