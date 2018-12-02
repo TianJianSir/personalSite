@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import Page from '../../components/Page';
 import fullpage from 'fullpage.js';
 import './style.scss';
-// import pic1  from '../../images/1.jpg';
-// import pic2  from '../../images/2.jpg';
-// import pic3  from '../../images/3.jpg';
-// import pic4  from '../../images/4.jpg';
+import pic1  from '../../images/1.jpg';
+import pic2  from '../../images/2.jpg';
+import pic3  from '../../images/3.jpg';
+import pic4  from '../../images/4.jpg';
 
 export default class Main extends Component{
   constructor(props){
@@ -34,7 +34,7 @@ export default class Main extends Component{
             <Link to='/login'>登录</Link>
             <Link to='/login'>注册</Link>
           </header>
-        {/* <div id="fullpage">
+        <div id="fullpage">
           <div className="section">
             <img src={pic1}/>
           </div>
@@ -47,7 +47,7 @@ export default class Main extends Component{
           <div className="section">
             <img src={pic4}/>
           </div>
-        </div> */}
+        </div>
 
 
         </div>

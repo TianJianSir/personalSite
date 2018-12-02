@@ -6,9 +6,14 @@ import Detail from './pages/detail'
 import './App.scss';
 
 class App extends Component {
+  componentDidMount(){
+    console.log('app didmount')
+  }
+
   render() {
     return (
       <div className="App">
+      <p>this is a APP</p>
         <Router>
               <Switch>
                   <Route path="/" exact component={Main}/>
