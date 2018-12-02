@@ -31,8 +31,8 @@ export default class Main extends Component{
       <Page>
         <div className='container'>
           <header>
-            <Link to='/login'>登录</Link>
-            <Link to='/login'>注册</Link>
+            <Link to='/blog/login'>登录</Link>
+            <Link to='/blog/login'>注册</Link>
           </header>
         <div id="fullpage">
           <div className="section">
