@@ -3,12 +3,6 @@ const path = require('path')
 const app = express();
 const port = 7000;
 
-app.use('*',function(req,res,next){
-    console.log('------->>>>>>')
-    console.log(req.params)
-    next()
-})
-
 // 本地使用
 // app.use('/static', express.static('build/static'))
 
