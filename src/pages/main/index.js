@@ -14,16 +14,16 @@ export default class Main extends Component{
   }
 
   componentDidMount(){
-  //   var fullPageInstance = new fullpage('#fullpage', {
-  //     navigation: true,
-  //     scrollHorizontally: true,
-  //     css3: true,
-  //     scrollingSpeed: 700,
-  //     scrollBar: false,
-  //     easing: 'easeInOutCubic',
-  //     slidesNavigation: true,
-  //     easingcss3: 'ease',
-  // });
+    var fullPageInstance = new fullpage('#fullpage', {
+      navigation: true,
+      scrollHorizontally: true,
+      css3: true,
+      scrollingSpeed: 700,
+      scrollBar: false,
+      easing: 'easeInOutCubic',
+      slidesNavigation: true,
+      easingcss3: 'ease',
+  });
   }
 
   render(){
