@@ -7,6 +7,8 @@ import pic1  from '../../images/1.jpg';
 import pic2  from '../../images/2.jpg';
 import pic3  from '../../images/3.jpg';
 import pic4  from '../../images/4.jpg';
+import utils from '../../utils'
+import COMMONSTORE from '../../utils/commonStore'
 
 export default class Main extends Component{
   constructor(props){
@@ -26,11 +28,26 @@ export default class Main extends Component{
   });
   }
 
+  saveData(){
+    let data = {
+      name: 'xima',
+      address: 'zhangjiang',
+      bus: 12
+    }
+    utils.init(data)
+  }
+
+  showData(){
+    console.log(COMMONSTORE)
+  }
+
   render(){
     return (
       <Page>
         <div className='container'>
           <header>
+            <button onClick={this.saveData}>save data</button>
+            <button onClick={this.showData}>show data</button>
             <Link to='/blog/login'>登录</Link>
             <Link to='/blog/login'>注册</Link>
           </header>
