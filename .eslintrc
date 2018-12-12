@@ -1,0 +1,123 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "extends": "eslint:recommended",
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+            // 解构赋值
+            "destructuring": true,
+            "classes": true
+        }
+    },
+    "plugins": [
+        "react"
+    ],
+    "globals":{
+        "document": true,
+        "localStorage": true,
+        "window": true,
+        "it": true
+    },
+    "rules": {
+        // 缩进控制 2空格
+        "indent": [2, 4],
+        // 禁止空格和 tab 的混合缩进
+        "no-mixed-spaces-and-tabs": 2,
+        // 禁止使用多个空格
+        "no-multi-spaces": [2,{"ignoreEOLComments": false}],
+        //禁止正则表达式字面量中出现多个空格
+        "no-regex-spaces": 2,
+        // 强制数组方括号中使用一致的空格 数组紧贴括号部分不允许包含空格。
+        "array-bracket-spacing": [2, "never"],
+        // 强制在单行代码块中使用一致的空格 单行代码块中紧贴括号部分不允许包含空格。
+        "block-spacing": [0, "never"],
+        // 逗号前不能加空格
+        "comma-spacing": [2, {"before": false, "after": true}],
+        // 强制分号前面后面都无空格
+        "semi-spacing": ["error", {"before": false, "after": true}],
+        // 禁用行尾空格
+        "no-trailing-spaces": 2,
+        // 禁止 function 标识符和圆括号之间有空格
+        "no-spaced-func": 2,
+        // 禁止圆括号内的空格
+        "space-in-parens": [2, "never"],
+        // 要求或禁止在一元操作符之前或之后存在空格,new、delete、typeof、void、yield要求有空格，-、+、--、++、!、!!要求无空格。
+        "space-unary-ops": 2,
+        // 要求箭头函数的箭头之前和之后有空格
+        "arrow-spacing": 2,
+        // 强制 generator 函数中 * 号前有空格，后无空格。
+        "generator-star-spacing": [2, {"before": true, "after": false}],
+        // 禁止在字符串和注释之外不规则的空白
+        "no-irregular-whitespace": 2,
+        // 不允许多个空行
+        "no-multiple-empty-lines": 2,
+        // 要求文件末尾保留一行空行
+        "eol-last": 2,
+        // 注释前面换行
+        "lines-around-comment": [2, {"beforeBlockComment": true}],
+        // 使用分号
+        "semi": [2, "always"],
+        // if、else if、else、for、while强制使用大括号，但允许在单行中省略大括号。
+        "curly": [2, "multi-line"],
+        // 使用未定义的变量
+        "no-undef": 2,
+        // 用let/const代替var
+        "no-var":2,
+        // 不允许改变用const声明的变量
+        "no-const-assign": 2,
+        // 如果一个变量不会被重新赋值，最好使用const进行声明。
+        "prefer-const": 1,
+        // 禁止定义前使用
+        "no-use-before-define": 1,
+        // 禁止出现未使用过的变量
+        "no-unused-vars": [1, { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+        // 禁止多次声明同一变量
+        "no-redeclare": 2,
+        // 禁止在 switch 语句中的 case 子句中出现重复的测试表达式
+        "no-duplicate-case": 2,
+        // 要求 Switch 语句中有 Default 分支
+        "default-case": 2,
+        // 要求使用 === 和 !==
+        "eqeqeq": [1,"always"],
+        // 如果 if 块中包含了一个 return 语句，else 块就成了多余的了。可以将其内容移至块外。
+        "no-else-return": 2,
+        // 字符串使用单引号
+        "quotes": [2, "single"],
+        // 使用模板而非字符串连接
+        "prefer-template": 1,
+        // 禁止对象字面量中出现重复的 key
+        "no-dupe-keys": 2,
+        // 禁止扩展原生对象
+        "no-extend-native": 2,
+        // 禁止在 function 定义中出现重复的参数
+        "no-dupe-args": 2,
+        // 禁止在返回语句中赋值
+        "no-return-assign": 2,
+        // 要求 return 语句之前有一空行
+        "newline-before-return": 1,
+        // 禁止对 function 声明重新赋值
+        "no-func-assign": 2,
+        // 禁用console
+        "no-console": 1,
+        // 警用eval
+        "no-eval": 2,
+        // 禁用with语句
+        "no-with": 2,
+        // 禁用不必要的分号
+        "no-extra-semi": 2,
+        // 禁止空块语句
+        "no-empty": 2,
+        // 禁止在正则表达式中出现空字符集
+        "no-empty-character-class": 2,
+        // 禁止无效的正则表达式字符串
+        "no-invalid-regexp": 2 ,
+        // 多余的感叹号转布尔型
+        "no-extra-boolean-cast": 1
+    }
+}

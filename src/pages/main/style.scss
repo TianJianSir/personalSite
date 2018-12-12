@@ -1,22 +1,21 @@
-.container{
-    header{
+.container {
+    header {
         position: fixed;
         top: 0;
         z-index: 10;
         right: 0;
-        a{
-            color: rgb(33, 150,243);
+        a {
+            color: rgb(33, 150, 243);
             font-size: 20px;
             padding: 20px;
             text-decoration: none;
         }
     }
-    
-    #fullpage{
-        img{
+
+    #fullpage {
+        img {
             width: 100%;
             height: 100%;
         }
     }
 }
-

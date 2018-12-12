@@ -1,8 +1,8 @@
-let COMMONSTORE = {
+const COMMONSTORE = {
     namespace: 'commonStore',
-    setData: function(name,data){
-        this[name] = data
+    setData: function(name, data){
+        this[name] = data;
     }
-}
+};
 
-export default COMMONSTORE
+export default COMMONSTORE;
