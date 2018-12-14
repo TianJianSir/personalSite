@@ -1,4 +1,18 @@
-.detail_container {
-    height: 200px;
-    border: 1px solid yellow;
+.login_container {
+    width: 300px;
+    margin: 0 auto;
+    padding-top: 150px;
+
+    .login-form{
+        max-width: 300px;
+    }
+
+    .login-form-forgot{
+        float: right;
+    }
+
+    .login-form-button{
+        width: 100%;
+    }
+
 }

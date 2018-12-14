@@ -88,7 +88,7 @@
         // 如果 if 块中包含了一个 return 语句，else 块就成了多余的了。可以将其内容移至块外。
         "no-else-return": 2,
         // 字符串使用单引号
-        "quotes": [2, "single"],
+        "quotes": [1, "single"],
         // 使用模板而非字符串连接
         "prefer-template": 1,
         // 禁止对象字面量中出现重复的 key
