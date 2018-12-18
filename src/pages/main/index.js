@@ -22,7 +22,6 @@ export default class Main extends Component{
                         <img src={pic1}/>
                     </div>
                 </div>
-
             </Page>
         );
     }

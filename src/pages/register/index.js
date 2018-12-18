@@ -1,111 +1,84 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Icon, Input, Button, Checkbox, Divider } from 'antd';
-import Page from '../../components/Page';
-import prize01 from '../../images/prize01.png';
+import { Form, Icon, Input, Button, Divider } from 'antd';
 import './style.scss';
-import commonStore from '../../utils/commonStore';
 
 const FormItem = Form.Item;
 
-class NormalRegisterForm extends Component {
-    handleSubmit = e => {
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-            }
+class RegisterForm extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            name: '',
+            password: '',
+            confirm_password: ''
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(){
+        const { name, password, confirm_password } = this.state;
+        const data = {
+            name,
+            password,
+            confirm_password
+        };
+        console.log(data);
+    }
+
+    handleChange(e, name){
+        const value = e.target ? e.target.value: e;
+        this.setState({
+            [name]:value
         });
-    };
+    }
 
     render() {
-        const { getFieldDecorator } = this.props.form;
+        const { name, password, confirm_password } = this.state;
 
         return (
             <div className='register_container'>
                 <Divider>Register</Divider>
 
-                <Form onSubmit={this.handleSubmit} className='register-form'>
+                <div className='register-form'>
                     <FormItem>
-                        {getFieldDecorator('userName', {
-                            rules: [
-                                {
-                                    required: true,
-                                    message: 'Please input your username!'
-                                }
-                            ]
-                        })(
-                            <Input
-                                prefix={
-                                    <Icon
-                                        type='user'
-                                        style={{ color: 'rgba(0,0,0,.25)' }}
-                                    />
-                                }
-                                placeholder='Username'
-                            />
-                        )}
+                        <Input
+                            value={name}
+                            onChange={(e) => this.handleChange(e, 'name')}
+                            prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                            placeholder='Username'/>
                     </FormItem>
                     <FormItem>
-                        {getFieldDecorator('password', {
-                            rules: [
-                                {
-                                    required: true,
-                                    message: 'Please input your Password!'
-                                }
-                            ]
-                        })(
-                            <Input
-                                prefix={
-                                    <Icon
-                                        type='lock'
-                                        style={{ color: 'rgba(0,0,0,.25)' }}
-                                    />
-                                }
-                                type='password'
-                                placeholder='Password'
-                            />
-                        )}
+                        <Input
+                            name={password}
+                            onChange={(e) => this.handleChange(e, 'password')}
+                            prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                            type='password'
+                            placeholder='Password'/>
                     </FormItem>
-
                     <FormItem>
-                        {getFieldDecorator('password', {
-                            rules: [
-                                {
-                                    required: true,
-                                    message: 'Please confirm your Password!'
-                                }
-                            ]
-                        })(
-                            <Input
-                                prefix={
-                                    <Icon
-                                        type='lock'
-                                        style={{ color: 'rgba(0,0,0,.25)' }}
-                                    />
-                                }
-                                type='password'
-                                placeholder='Confirm Password'
-                            />
-                        )}
+                        <Input
+                            name={confirm_password}
+                            onChange={(e) => this.handleChange(e, 'confirm_password')}
+                            prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                            type='password'
+                            placeholder='Confirm Password'/>
                     </FormItem>
-
                     <FormItem>
                         <Button
                             type='primary'
                             htmlType='submit'
                             className='login-form-button'
+                            onClick={this.handleSubmit}
                         >
                             register
                         </Button>
                         Or <Link to='/blog/login'>login now!</Link>
                     </FormItem>
-                </Form>
+                </div>
             </div>
         );
     }
 }
 
-const WrappedNormalRegisterForm = Form.create()(NormalRegisterForm);
-
-export default WrappedNormalRegisterForm;
+export default RegisterForm;

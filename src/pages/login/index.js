@@ -1,77 +1,60 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Icon, Input, Button, Checkbox, Divider } from 'antd';
-import Page from '../../components/Page';
-import prize01 from '../../images/prize01.png';
 import './style.scss';
-import commonStore from '../../utils/commonStore';
 
 const FormItem = Form.Item;
+class LoginForm extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            name: '',
+            password: ''
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
 
-class NormalLoginForm extends Component {
-    handleSubmit = e => {
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-            }
+    handleSubmit (){
+        const { name, password } = this.state;
+        const data = {
+            name,
+            password
+        };
+        console.log(data);
+    }
+
+    handleChange(e, name){
+        const value = e.target ? e.target.value: e;
+        this.setState({
+            [name]:value
         });
-    };
+    }
 
     render() {
-        const { getFieldDecorator } = this.props.form;
+        const { name, password } = this.state;
 
         return (
             <div className='login_container'>
                 <Divider>LOGIN</Divider>
 
-                <Form onSubmit={this.handleSubmit} className='login-form'>
+                <div className='login-form'>
                     <FormItem>
-                        {getFieldDecorator('userName', {
-                            rules: [
-                                {
-                                    required: true,
-                                    message: 'Please input your username!'
-                                }
-                            ]
-                        })(
-                            <Input
-                                prefix={
-                                    <Icon
-                                        type='user'
-                                        style={{ color: 'rgba(0,0,0,.25)' }}
-                                    />
-                                }
-                                placeholder='Username'
-                            />
-                        )}
+                        <Input
+                            value={name}
+                            onChange={(e) => this.handleChange(e, 'name')}
+                            prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                            placeholder='Username'/>
                     </FormItem>
                     <FormItem>
-                        {getFieldDecorator('password', {
-                            rules: [
-                                {
-                                    required: true,
-                                    message: 'Please input your Password!'
-                                }
-                            ]
-                        })(
-                            <Input
-                                prefix={
-                                    <Icon
-                                        type='lock'
-                                        style={{ color: 'rgba(0,0,0,.25)' }}
-                                    />
-                                }
-                                type='password'
-                                placeholder='Password'
-                            />
-                        )}
+                        <Input
+                            value={password}
+                            onChange={(e) => this.handleChange(e, 'password')}
+                            prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                            type='password'
+                            placeholder='Password'/>
                     </FormItem>
                     <FormItem>
-                        {getFieldDecorator('remember', {
-                            valuePropName: 'checked',
-                            initialValue: true
-                        })(<Checkbox>Remember me</Checkbox>)}
+                        <Checkbox className='logon-remember' checked={true}>Remember me</Checkbox>
                         <a className='login-form-forgot' href=''>
                             Forgot password
                         </a>
@@ -79,17 +62,16 @@ class NormalLoginForm extends Component {
                             type='primary'
                             htmlType='submit'
                             className='login-form-button'
+                            onClick={this.handleSubmit}
                         >
                             Log in
                         </Button>
                         Or <Link to='/blog/register'>register now!</Link>
                     </FormItem>
-                </Form>
+                </div>
             </div>
         );
     }
 }
 
-const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
-
-export default WrappedNormalLoginForm;
+export default LoginForm;

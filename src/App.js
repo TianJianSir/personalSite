@@ -7,10 +7,6 @@ import Register from './pages/register';
 import './App.scss';
 
 class App extends Component {
-    componentDidMount() {
-        console.log('app didmount');
-    }
-
     render() {
         return (
             <div className="App">
