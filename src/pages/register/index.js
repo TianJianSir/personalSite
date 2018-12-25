@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Icon, Input, Button, Divider } from 'antd';
+import md5 from 'md5';
+import API from '../../api';
+import { Form, Icon, Input, Button, Divider, notification } from 'antd';
 import './style.scss';
 
 const FormItem = Form.Item;
@@ -20,10 +22,50 @@ class RegisterForm extends Component {
         const { name, password, confirm_password } = this.state;
         const data = {
             name,
-            password,
-            confirm_password
+            password: md5(password),
+            confirm_password: md5(confirm_password)
         };
-        console.log(data);
+
+        if(!name){
+            notification.error({
+                message: '错误信息',
+                description: '请输入姓名'
+            });
+
+            return false;
+        }
+
+        if(!password){
+            notification.error({
+                message: '错误信息',
+                description: '请输入密码'
+            });
+
+            return false;
+        }
+
+        if(password !== confirm_password){
+            notification.error({
+                message: '错误信息',
+                description: '两次密码不一致'
+            });
+
+            return false;
+        }
+
+        API.REQUEST('/api/user', 'POST', data).then((res) => {
+            if(res.ret !== 0){
+                notification.error({
+                    message: '错误信息',
+                    description: '注册失败'
+                });
+            }else{
+                notification.success({
+                    message: '成功信息',
+                    description: '注册成功,请登陆，会跳到登陆页'
+                });
+            }
+        });
     }
 
     handleChange(e, name){

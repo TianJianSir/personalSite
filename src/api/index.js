@@ -3,11 +3,8 @@ import axios from 'axios';
 const API = {
     REQUEST: function(url, type, params={}){
         return this[type](url, params).then((res) => {
-            if(res.data.ret === 0){
-                return res.data;
-            }
+            return res.data;
             // todo 统一容错
-
         });
     },
     GET: function(url, params){

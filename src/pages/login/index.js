@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Icon, Input, Button, Checkbox, Divider } from 'antd';
+import md5 from 'md5';
+import { Form, Icon, Input, Button, Checkbox, Divider, notification } from 'antd';
 import './style.scss';
+import API from '../../api';
 
 const FormItem = Form.Item;
 class LoginForm extends Component {
@@ -18,9 +20,40 @@ class LoginForm extends Component {
         const { name, password } = this.state;
         const data = {
             name,
-            password
+            password: md5(password)
         };
-        console.log(data);
+
+        if(!name){
+            notification.error({
+                message: '错误信息',
+                description: '请输入姓名'
+            });
+
+            return false;
+        }
+
+        if(!password){
+            notification.error({
+                message: '错误信息',
+                description: '请输入密码'
+            });
+
+            return false;
+        }
+
+        API.REQUEST('/api/user', 'PUT', data).then((res) => {
+            if(res.ret !== 0){
+                notification.error({
+                    message: '错误信息',
+                    description: '输入的账号或密码错误'
+                });
+            }else{
+                notification.success({
+                    message: '成功信息',
+                    description: '登陆成功,以后会跳到首页去，敬请谅解'
+                });
+            }
+        });
     }
 
     handleChange(e, name){
