@@ -1,14 +1,10 @@
-import API from '../../api';
-import { notification } from 'antd';
-import md5 from 'md5';
-
 const initialState = {
     name: '',
     password: '',
     isLogin: false
 };
 
-const actionType = {
+const ACTION = {
     LOGIN_INPUT(state, action){
         const { name, value } = action.payload;
         state[name] = value;
@@ -28,8 +24,8 @@ const actionType = {
 };
 
 export default function(state = initialState, action) {
-    if(actionType[action.type]){
-        return actionType[action.type](state, action);
+    if(ACTION[action.type]){
+        return ACTION[action.type](state, action);
     }
 
     return state;

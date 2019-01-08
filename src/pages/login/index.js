@@ -1,30 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import API from '../../api';
-import md5 from 'md5';
 import { Form, Icon, Input, Button, Checkbox, Divider, notification } from 'antd';
 import './style.scss';
+import {login} from '../../redux/actions';
 
 
 const FormItem = Form.Item;
 class LoginForm extends Component {
     constructor(props){
         super(props);
-    }
-
-    submit(){
-        return (dispatch, getState) => {
-            const {login} = getState();
-            const data = {
-                name: login.name,
-                password: md5(login.password)
-            };
-            API.REQUEST('/api/user', 'PUT', data).then((res) => {
-                dispatch({type: 'LOGIN_SUBMIT', res});
-            });
-
-        };
     }
 
     handleSubmit = () => {
@@ -48,12 +33,12 @@ class LoginForm extends Component {
             return false;
         }
 
-        this.props.dispatch(this.submit());
+        this.props.dispatch(login.loginSubmit());
     }
 
     handleChange(e, name){
         const value = e.target ? e.target.value: e;
-        this.props.dispatch({type:'LOGIN_INPUT', payload: {value, name}});
+        this.props.dispatch(login.loginInput(name, value));
     }
 
     render() {

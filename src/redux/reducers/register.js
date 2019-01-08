@@ -1,14 +1,11 @@
-import API from '../../api';
-import { notification } from 'antd';
-import md5 from 'md5';
-
 const initialState = {
     name: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    isRegistered: false
 };
 
-const actionType = {
+const ACTION = {
     REGISTER_INPUT(state, action){
         const { name, value } = action.payload;
         state[name] = value;
@@ -17,27 +14,9 @@ const actionType = {
             ...state
         };
     },
-    async REGISTER_SUBMIT(state, action){
-        // todo 异步处理
-        const { name, password } = state;
-        const data = {
-            name,
-            password: md5(password)
-        };
-        const res = await API.REQUEST('/api/user', 'PUT', data);
-
-        if(res.ret !== 0){
-            notification.error({
-                message: '错误信息',
-                description: '输入的账号或密码错误'
-            });
-        }else{
-            notification.success({
-                message: '成功信息',
-                description: '登陆成功,以后会跳到首页去，敬请谅解'
-            });
-            state.isLogin = true;
-        }
+    REGISTER_SUBMIT(state, action){
+        const {res} = action;
+        state.isRegistered = res.ret === 0;
 
         return {
             ...state
@@ -46,8 +25,8 @@ const actionType = {
 };
 
 export default function(state = initialState, action) {
-    if(actionType[action.type]){
-        return actionType[action.type](state, action);
+    if(ACTION[action.type]){
+        return ACTION[action.type](state, action);
     }
 
     return state;
