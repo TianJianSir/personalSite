@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import API from '../../api';
+import md5 from 'md5';
 import { Form, Icon, Input, Button, Checkbox, Divider, notification } from 'antd';
 import './style.scss';
 
@@ -9,6 +11,20 @@ const FormItem = Form.Item;
 class LoginForm extends Component {
     constructor(props){
         super(props);
+    }
+
+    submit(){
+        return (dispatch, getState) => {
+            const {login} = getState();
+            const data = {
+                name: login.name,
+                password: md5(login.password)
+            };
+            API.REQUEST('/api/user', 'PUT', data).then((res) => {
+                dispatch({type: 'LOGIN_SUBMIT', res});
+            });
+
+        };
     }
 
     handleSubmit = () => {
@@ -32,7 +48,7 @@ class LoginForm extends Component {
             return false;
         }
 
-        this.props.dispatch({type:'LOGIN_SUBMIT'});
+        this.props.dispatch(this.submit());
     }
 
     handleChange(e, name){
@@ -41,7 +57,7 @@ class LoginForm extends Component {
     }
 
     render() {
-        const { name, password } = this.props.login;
+        const { name, password, isLogin } = this.props.login;
 
         return (
             <div className='login_container'>
@@ -66,7 +82,7 @@ class LoginForm extends Component {
                     <FormItem>
                         <Checkbox className='logon-remember' checked={true}>Remember me</Checkbox>
                         <a className='login-form-forgot' href=''>
-                            Forgot password
+                            {isLogin ?'已登陆' : 'Forgot password'}
                         </a>
                         <Button
                             type='primary'
