@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import md5 from 'md5';
-import API from '../../api';
+import { connect } from 'dva';
 import { Form, Icon, Input, Button, Divider, notification } from 'antd';
 import './style.scss';
 
@@ -10,21 +9,11 @@ const FormItem = Form.Item;
 class RegisterForm extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            name: '',
-            password: '',
-            confirm_password: ''
-        };
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(){
-        const { name, password, confirm_password } = this.state;
-        const data = {
-            name,
-            password: md5(password),
-            confirm_password: md5(confirm_password)
-        };
+    handleSubmit = () => {
+        const { register, dispatch } = this.props;
+        const { name, password, confirm_password } = register;
 
         if(!name){
             notification.error({
@@ -53,30 +42,16 @@ class RegisterForm extends Component {
             return false;
         }
 
-        API.REQUEST('/api/user', 'POST', data).then((res) => {
-            if(res.ret !== 0){
-                notification.error({
-                    message: '错误信息',
-                    description: '注册失败'
-                });
-            }else{
-                notification.success({
-                    message: '成功信息',
-                    description: '注册成功,请登陆，会跳到登陆页'
-                });
-            }
-        });
+        dispatch({type:'register/handleSubmit'});
     }
 
     handleChange(e, name){
         const value = e.target ? e.target.value: e;
-        this.setState({
-            [name]:value
-        });
+        this.props.dispatch({type: 'register/handleInput', value, name});
     }
 
     render() {
-        const { name, password, confirm_password } = this.state;
+        const { name, password, confirm_password } = this.props.register;
 
         return (
             <div className='register_container'>
@@ -123,4 +98,10 @@ class RegisterForm extends Component {
     }
 }
 
-export default RegisterForm;
+const mapStateToProps = (state) => {
+    return {
+        register: state.register
+    };
+};
+
+export default connect(mapStateToProps)(RegisterForm);

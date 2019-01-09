@@ -1,27 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import md5 from 'md5';
+import { connect } from 'dva';
 import { Form, Icon, Input, Button, Checkbox, Divider, notification } from 'antd';
 import './style.scss';
-import API from '../../api';
 
 const FormItem = Form.Item;
 class LoginForm extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            name: '',
-            password: ''
-        };
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit (){
-        const { name, password } = this.state;
-        const data = {
-            name,
-            password: md5(password)
-        };
+    handleSubmit = () => {
+        const { login, dispatch } = this.props;
+        const { name, password } = login;
 
         if(!name){
             notification.error({
@@ -41,30 +32,16 @@ class LoginForm extends Component {
             return false;
         }
 
-        API.REQUEST('/api/user', 'PUT', data).then((res) => {
-            if(res.ret !== 0){
-                notification.error({
-                    message: '错误信息',
-                    description: '输入的账号或密码错误'
-                });
-            }else{
-                notification.success({
-                    message: '成功信息',
-                    description: '登陆成功,以后会跳到首页去，敬请谅解'
-                });
-            }
-        });
+        dispatch({type: 'login/handleSubmit'});
     }
 
     handleChange(e, name){
         const value = e.target ? e.target.value: e;
-        this.setState({
-            [name]:value
-        });
+        this.props.dispatch({type: 'login/handleInput', value, name});
     }
 
     render() {
-        const { name, password } = this.state;
+        const { name, password, isLogin } = this.props.login;
 
         return (
             <div className='login_container'>
@@ -89,7 +66,7 @@ class LoginForm extends Component {
                     <FormItem>
                         <Checkbox className='logon-remember' checked={true}>Remember me</Checkbox>
                         <a className='login-form-forgot' href=''>
-                            Forgot password
+                            {isLogin?'已登陆':'Forgot password'}
                         </a>
                         <Button
                             type='primary'
@@ -107,4 +84,10 @@ class LoginForm extends Component {
     }
 }
 
-export default LoginForm;
+const mapStateToProps = (state) => {
+    return {
+        login: state.login
+    };
+};
+
+export default connect(mapStateToProps)(LoginForm);

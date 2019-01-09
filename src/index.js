@@ -1,11 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import dva from 'dva';
+import createLoading from 'dva-loading';
+import {createBrowserHistory as createHistory} from 'history';
+
+import login from './models/login';
+import register from './models/register';
+import router from './router';
+
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// 1. Initialize
+// 初始化dva对象的时候,要是传空的话，即使用了BrowserRouter URL后面还是会加上#/ 很丑
+const app = dva({
+    history: createHistory()
+});
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
+// 2. Plugins
+app.use(createLoading());
+
+// 3. Model
+app.model(login);
+app.model(register);
+
+// 4. Router
+app.router(router);
+
+// 5. Start
+app.start('#root');
+
 serviceWorker.unregister();
