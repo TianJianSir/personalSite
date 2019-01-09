@@ -5,6 +5,7 @@ import {createBrowserHistory as createHistory} from 'history';
 import login from './models/login';
 import register from './models/register';
 import router from './router';
+import './index.scss';
 
 import * as serviceWorker from './serviceWorker';
 

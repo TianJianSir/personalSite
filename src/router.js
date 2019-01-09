@@ -5,11 +5,9 @@ import Main from './pages/main';
 import Login from './pages/login';
 import Register from './pages/register';
 
-console.log(require('dva/router'));
-
 const RouterConfig = () => {
     return (
-        <Router >
+        <Router>
             <Switch>
                 <Route path="/blog" exact component={Main} />
                 <Route path="/blog/login" exact component={Login} />

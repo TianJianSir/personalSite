@@ -1,10 +1,11 @@
 {
     "plugins": [
-      ["import", {
-        "libraryName": "antd",
-        "libraryDirectory": "es",
-        "style": "css"
-      }]
+        ["import", {
+            "libraryName": "antd",
+            "libraryDirectory": "es",
+            "style": "css"
+        }],
+        ["@babel/plugin-proposal-decorators", { "legacy": true }]
     ],
     "presets": [
         "react-app"

@@ -1,16 +1,8 @@
-import React, { Component } from 'react';
-import './style.scss';
+import ErrorBoundary from './ErrorBoundary';
 
-export default class Page extends Component{
-    constructor(props){
-        super(props);
-    }
+export default function Page(_Component) {
+    const Component = ErrorBoundary(_Component);
 
-    render(){
-        return (
-            <div className='Page_container'>
-                {this.props.children}
-            </div>
-        );
-    }
+    return Component;
 }
+
