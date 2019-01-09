@@ -9,6 +9,10 @@ export default class FrameContainer extends Component {
         console.log('frame did moutn');
     }
 
+    componentWillReceiveProps(){
+        console.log('receive props');
+    }
+
     render(){
         return (
             <div className='Frame'>

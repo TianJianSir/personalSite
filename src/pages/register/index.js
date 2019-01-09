@@ -55,48 +55,48 @@ class RegisterForm extends Component {
         const { name, password, confirm_password } = this.props.register;
 
         return (
-            <FrameContainer>
-                <div className='register_container'>
-                    <Divider>Register</Divider>
 
-                    <div className='register-form'>
-                        <FormItem>
-                            <Input
-                                value={name}
-                                onChange={(e) => this.handleChange(e, 'name')}
-                                prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }}/>}
-                                placeholder='Username'/>
-                        </FormItem>
-                        <FormItem>
-                            <Input
-                                name={password}
-                                onChange={(e) => this.handleChange(e, 'password')}
-                                prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }}/>}
-                                type='password'
-                                placeholder='Password'/>
-                        </FormItem>
-                        <FormItem>
-                            <Input
-                                name={confirm_password}
-                                onChange={(e) => this.handleChange(e, 'confirm_password')}
-                                prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }}/>}
-                                type='password'
-                                placeholder='Confirm Password'/>
-                        </FormItem>
-                        <FormItem>
-                            <Button
-                                type='primary'
-                                htmlType='submit'
-                                className='login-form-button'
-                                onClick={this.handleSubmit}
-                            >
-                                register
-                            </Button>
-                            Or <Link to='/blog/login'>login now!</Link>
-                        </FormItem>
-                    </div>
+            <div className='register_container'>
+                <Divider>Register</Divider>
+
+                <div className='register-form'>
+                    <FormItem>
+                        <Input
+                            value={name}
+                            onChange={(e) => this.handleChange(e, 'name')}
+                            prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                            placeholder='Username'/>
+                    </FormItem>
+                    <FormItem>
+                        <Input
+                            name={password}
+                            onChange={(e) => this.handleChange(e, 'password')}
+                            prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                            type='password'
+                            placeholder='Password'/>
+                    </FormItem>
+                    <FormItem>
+                        <Input
+                            name={confirm_password}
+                            onChange={(e) => this.handleChange(e, 'confirm_password')}
+                            prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                            type='password'
+                            placeholder='Confirm Password'/>
+                    </FormItem>
+                    <FormItem>
+                        <Button
+                            type='primary'
+                            htmlType='submit'
+                            className='login-form-button'
+                            onClick={this.handleSubmit}
+                        >
+                            register
+                        </Button>
+                        Or <Link to='/blog/login'>login now!</Link>
+                    </FormItem>
                 </div>
-            </FrameContainer>
+            </div>
+
         );
     }
 }
