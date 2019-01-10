@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
+import nprogress from 'nprogress';
 
 export default class FrameContainer extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentDidMount(){
-        console.log('frame did moutn');
+    handleProgress = (nextProps) => {
+        if(nextProps.location.pathname !== this.props.pathname){
+            nprogress.start();
+            const loading = nextProps.app._store.getState().loading;
+
+            if(!loading.global){
+                nprogress.done();
+            }
+        }
     }
 
-    componentWillReceiveProps(){
-        console.log('receive props');
+    componentWillReceiveProps(nextProps){
+        this.handleProgress(nextProps);
     }
 
     render(){
