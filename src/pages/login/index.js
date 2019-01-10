@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'dva';
 import Page from '../../components/Page';
-import FrameContainer from '../../components/Frame';
 import { Form, Icon, Input, Button, Checkbox, Divider, notification } from 'antd';
 import './style.scss';
 
 const FormItem = Form.Item;
 
-
+@Page
 class LoginForm extends Component {
     constructor(props){
         super(props);

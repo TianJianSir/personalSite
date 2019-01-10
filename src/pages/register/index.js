@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'dva';
-import FrameContainer from '../../components/Frame';
+import Page from '../../components/Page';
 import { Form, Icon, Input, Button, Divider, notification } from 'antd';
 import './style.scss';
 
 const FormItem = Form.Item;
 
+@Page
 class RegisterForm extends Component {
     constructor(props){
         super(props);
