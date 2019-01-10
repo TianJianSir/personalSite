@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'dva';
+import QueueAnim from 'rc-queue-anim';
 import Page from '../../components/Page';
 import { Form, Icon, Input, Button, Divider, notification } from 'antd';
 import './style.scss';
@@ -61,40 +62,42 @@ class RegisterForm extends Component {
                 <Divider>Register</Divider>
 
                 <div className='register-form'>
-                    <FormItem>
-                        <Input
-                            value={name}
-                            onChange={(e) => this.handleChange(e, 'name')}
-                            prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }}/>}
-                            placeholder='Username'/>
-                    </FormItem>
-                    <FormItem>
-                        <Input
-                            name={password}
-                            onChange={(e) => this.handleChange(e, 'password')}
-                            prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }}/>}
-                            type='password'
-                            placeholder='Password'/>
-                    </FormItem>
-                    <FormItem>
-                        <Input
-                            name={confirm_password}
-                            onChange={(e) => this.handleChange(e, 'confirm_password')}
-                            prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }}/>}
-                            type='password'
-                            placeholder='Confirm Password'/>
-                    </FormItem>
-                    <FormItem>
-                        <Button
-                            type='primary'
-                            htmlType='submit'
-                            className='login-form-button'
-                            onClick={this.handleSubmit}
-                        >
-                            register
-                        </Button>
-                        Or <Link to='/blog/login'>login now!</Link>
-                    </FormItem>
+                    <QueueAnim delay={300} className='queue-simple'>
+                        <FormItem key='form1'>
+                            <Input
+                                value={name}
+                                onChange={(e) => this.handleChange(e, 'name')}
+                                prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                                placeholder='Username'/>
+                        </FormItem>
+                        <FormItem key='form2'>
+                            <Input
+                                name={password}
+                                onChange={(e) => this.handleChange(e, 'password')}
+                                prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                                type='password'
+                                placeholder='Password'/>
+                        </FormItem>
+                        <FormItem key='form3'>
+                            <Input
+                                name={confirm_password}
+                                onChange={(e) => this.handleChange(e, 'confirm_password')}
+                                prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                                type='password'
+                                placeholder='Confirm Password'/>
+                        </FormItem>
+                        <FormItem key='form4'>
+                            <Button
+                                type='primary'
+                                htmlType='submit'
+                                className='login-form-button'
+                                onClick={this.handleSubmit}
+                            >
+                                register
+                            </Button>
+                            Or <Link to='/blog/login'>login now!</Link>
+                        </FormItem>
+                    </QueueAnim>
                 </div>
             </div>
 

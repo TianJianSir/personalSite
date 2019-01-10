@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'dva';
+import QueueAnim from 'rc-queue-anim';
 import Page from '../../components/Page';
 import { Form, Icon, Input, Button, Checkbox, Divider, notification } from 'antd';
 import './style.scss';
@@ -48,44 +49,44 @@ class LoginForm extends Component {
         const { name, password, isLogin } = login;
 
         return (
-
             <div className='login_container'>
                 <Divider>LOGIN</Divider>
 
                 <div className='login-form'>
-                    <FormItem>
-                        <Input
-                            value={name}
-                            onChange={(e) => this.handleChange(e, 'name')}
-                            prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }}/>}
-                            placeholder='Username'/>
-                    </FormItem>
-                    <FormItem>
-                        <Input
-                            value={password}
-                            onChange={(e) => this.handleChange(e, 'password')}
-                            prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }}/>}
-                            type='password'
-                            placeholder='Password'/>
-                    </FormItem>
-                    <FormItem>
-                        <Checkbox className='logon-remember' checked={true}>Remember me</Checkbox>
-                        <a className='login-form-forgot' href=''>
-                            {isLogin?'已登陆':'Forgot password'}
-                        </a>
-                        <Button
-                            type='primary'
-                            htmlType='submit'
-                            className='login-form-button'
-                            onClick={this.handleSubmit}
-                        >
-                            Log in
-                        </Button>
-                        Or <Link to='/blog/register'>register now!</Link>
-                    </FormItem>
+                    <QueueAnim delay={300} className='queue-simple'>
+                        <FormItem key='form1'>
+                            <Input
+                                value={name}
+                                onChange={(e) => this.handleChange(e, 'name')}
+                                prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                                placeholder='Username'/>
+                        </FormItem>
+                        <FormItem key='form2'>
+                            <Input
+                                value={password}
+                                onChange={(e) => this.handleChange(e, 'password')}
+                                prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                                type='password'
+                                placeholder='Password'/>
+                        </FormItem>
+                        <FormItem key='form3'>
+                            <Checkbox className='logon-remember' checked={true}>Remember me</Checkbox>
+                            <a className='login-form-forgot' href=''>
+                                {isLogin?'已登陆':'Forgot password'}
+                            </a>
+                            <Button
+                                type='primary'
+                                htmlType='submit'
+                                className='login-form-button'
+                                onClick={this.handleSubmit}
+                            >
+                                Log in
+                            </Button>
+                            Or <Link to='/blog/register'>register now!</Link>
+                        </FormItem>
+                    </QueueAnim>
                 </div>
             </div>
-
         );
     }
 }

@@ -9,6 +9,3 @@ npm i && npm start
 npm build
 
 然后cd build && http-server -p 9090
-
-todo
-3,请求时loading
