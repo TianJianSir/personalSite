@@ -8,19 +8,17 @@ const initialState = {
 const ACTION = {
     REGISTER_INPUT(state, action){
         const { name, value } = action.payload;
-        state[name] = value;
 
-        return {
-            ...state
-        };
+        return Object.assign({}, state, {
+            [name]: value
+        });
     },
     REGISTER_SUBMIT(state, action){
         const {res} = action;
-        state.isRegistered = res.ret === 0;
 
-        return {
-            ...state
-        };
+        return Object.assign({}, state, {
+            isRegistered: res.ret === 0
+        });
     }
 };
 

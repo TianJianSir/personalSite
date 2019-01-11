@@ -7,19 +7,17 @@ const initialState = {
 const ACTION = {
     LOGIN_INPUT(state, action){
         const { name, value } = action.payload;
-        state[name] = value;
 
-        return {
-            ...state
-        };
+        return Object.assign({}, state, {
+            [name]: value
+        });
     },
     LOGIN_SUBMIT(state, action){
         const {res} = action;
-        state.isLogin = res.ret === 0;
 
-        return {
-            ...state
-        };
+        return Object.assign({}, state, {
+            isLogin: res.ret === 0
+        });
     }
 };
 
