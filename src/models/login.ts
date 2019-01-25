@@ -1,7 +1,7 @@
 import md5 from 'md5';
 import API from '../api';
 
-export default {
+const store: any = {
     namespace: 'login',
     state: {
         name: '',
@@ -36,4 +36,5 @@ export default {
             yield put({ type: 'refresh', payload:{isLogin} });
         },
     },
-};
+}
+export default store;

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import './style.scss';
-import pic1 from '../../images/1.jpg';
+// import pic1 from '../../images/1.jpg';
 
-export default class Main extends Component{
+class Main extends React.Component<{},{}>{
     constructor(props){
         super(props);
     }
@@ -17,9 +17,11 @@ export default class Main extends Component{
                 </header>
 
                 <div className="section">
-                    <img src={pic1}/>
+                    {/* // <img src={pic1}/> */}
                 </div>
             </div>
         );
     }
 }
+
+export default Main;

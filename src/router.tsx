@@ -1,12 +1,12 @@
 
-import React from 'react';
+import * as React from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'dva/router';
 import Main from './pages/main';
 import Login from './pages/login';
 import Register from './pages/register';
 import FrameContainer from './components/Frame';
 
-const RouterConfig = ({app}) => {
+const RouterConfig: any = ({app}) => {
     return (
         <Router>
             <Switch>

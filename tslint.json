@@ -1,0 +1,10 @@
+{
+    "rules": {
+        // "ordered-imports": false,
+        // "max-classes-per-file": false,
+        // "no-implicit-dependencies": false,
+        // "quotemark": false,
+        // "trailing-comma": false,
+        // "prefer-conditional-expression": false
+    }
+}

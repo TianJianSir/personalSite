@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "outDir": "ts_build",
+    "allowJs": true,
+    "module": "esnext",
+    "target": "es5",
+    "jsx": "preserve",
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false, // 某些包没有ts版本
+    "strictNullChecks": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/*"],
+  "exclude": ["node_modules", "build", "config", "polyfill", "public", "script","src/image"]
+}

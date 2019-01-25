@@ -1,9 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 
 // 捕获错误高阶组件，客户端可以正常捕获，
 // node渲染时的错误需要在node解析的时候去捕获
 export default function ErrorBoundary(Component) {
-    class ErrorBoundaryHoc extends React.Component {
+    class ErrorBoundaryHoc extends React.Component<{},{hasError:any,error:any,info:any}> {
+        componentName = ''
+        componentKind = ''
         constructor(props) {
             super(props);
             this.componentName = Component.name;

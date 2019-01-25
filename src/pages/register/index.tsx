@@ -1,22 +1,27 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'dva';
 import QueueAnim from 'rc-queue-anim';
 import Page from '../../components/Page';
-import { Form, Icon, Input, Button, Checkbox, Divider, notification } from 'antd';
+import { Form, Icon, Input, Button, Divider, notification } from 'antd';
 import './style.scss';
 
 const FormItem = Form.Item;
 
-@Page
-class LoginForm extends Component {
+interface IProps {
+    register: any;
+    dispatch: any;
+}
+
+// @Page
+class RegisterForm extends React.Component<IProps> {
     constructor(props){
         super(props);
     }
 
     handleSubmit = () => {
-        const { login, dispatch } = this.props;
-        const { name, password } = login;
+        const { register, dispatch } = this.props;
+        const { name, password, confirm_password } = register;
 
         if(!name){
             notification.error({
@@ -36,24 +41,34 @@ class LoginForm extends Component {
             return false;
         }
 
-        dispatch({type: 'login/handleSubmit'});
+        if(password !== confirm_password){
+            notification.error({
+                message: '错误信息',
+                description: '两次密码不一致'
+            });
+
+            return false;
+        }
+
+        dispatch({type:'register/handleSubmit'});
+        return ''
     }
 
     handleChange(e, name){
         const value = e.target ? e.target.value: e;
-        this.props.dispatch({type: 'login/handleInput', value, name});
+        this.props.dispatch({type: 'register/handleInput', value, name});
     }
 
     render() {
-        const { login, loading} = this.props;
-        const { name, password, isLogin } = login;
+        const { name, password, confirm_password } = this.props.register;
 
         return (
-            <div className='login_container'>
-                <Divider>LOGIN</Divider>
 
-                <div className='login-form'>
-                    <QueueAnim delay={300} className='queue-simple'>
+            <div className='register_container'>
+                <Divider>Register</Divider>
+
+                <div className='register-form'>
+                    <QueueAnim delay={300}>
                         <FormItem key='form1'>
                             <Input
                                 value={name}
@@ -63,39 +78,43 @@ class LoginForm extends Component {
                         </FormItem>
                         <FormItem key='form2'>
                             <Input
-                                value={password}
+                                name={password}
                                 onChange={(e) => this.handleChange(e, 'password')}
                                 prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }}/>}
                                 type='password'
                                 placeholder='Password'/>
                         </FormItem>
                         <FormItem key='form3'>
-                            <Checkbox className='logon-remember' checked={true}>Remember me</Checkbox>
-                            <a className='login-form-forgot' href=''>
-                                {isLogin?'已登陆':'Forgot password'}
-                            </a>
+                            <Input
+                                name={confirm_password}
+                                onChange={(e) => this.handleChange(e, 'confirm_password')}
+                                prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                                type='password'
+                                placeholder='Confirm Password'/>
+                        </FormItem>
+                        <FormItem key='form4'>
                             <Button
                                 type='primary'
                                 htmlType='submit'
                                 className='login-form-button'
                                 onClick={this.handleSubmit}
                             >
-                                Log in
+                                register
                             </Button>
-                            Or <Link to='/blog/register'>register now!</Link>
+                            Or <Link to='/blog/login'>login now!</Link>
                         </FormItem>
                     </QueueAnim>
                 </div>
             </div>
+
         );
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        login: state.login,
-        loading: state.loading
+        register: state.register
     };
 };
 
-export default connect(mapStateToProps)(LoginForm);
+export default connect(mapStateToProps)(RegisterForm);

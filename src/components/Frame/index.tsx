@@ -1,7 +1,13 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import nprogress from 'nprogress';
 
-export default class FrameContainer extends Component {
+interface IProps {
+    pathname?: any;
+    app: any,
+    children: any
+}
+
+export default class FrameContainer extends React.Component<IProps> {
     constructor(props) {
         super(props);
     }

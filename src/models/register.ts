@@ -1,7 +1,7 @@
 import md5 from 'md5';
 import API from '../api';
 
-export default {
+const store:any = {
     namespace: 'register',
     state: {
         name: '',
@@ -42,5 +42,5 @@ export default {
             };
         },
     },
-
-};
+}
+export default store;
