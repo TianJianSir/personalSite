@@ -2,6 +2,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 引入antd design，请参照[ant.design](https://ant.design/docs/react/use-with-create-react-app-cn)
 
+### 模板使用
+可以作为新项目的模板使用,`npm i`后迅速投入业务的开发
+
 ### 启动项目
 npm i && npm start
 
