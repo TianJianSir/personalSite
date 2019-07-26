@@ -17,7 +17,7 @@ EXPOSE 80
 # 安装依赖，打包编译
 RUN npm install \
     && npm run build \
-    && cp -r dist/* /var/www/html \
+    && cp -r build/* /var/www/html \
     && rm -rf /app
 
 CMD ["nginx","-g","daemon off;"]
